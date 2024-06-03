@@ -1,13 +1,17 @@
 import React, { useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
-import { Box, Button, Grid, Slider, Typography } from '@mui/material';
+import { Box, Button, Grid, IconButton, Slider, Tooltip, Typography } from '@mui/material';
 import { SketchPicker } from 'react-color';
+import Erase from "../components/images/icons8-eraser-60.png";
 
 export const SignaturePad: React.FC = () => {
   const sigCanvas = useRef<SignatureCanvas>(null);
   const [penColor,setPenColor] = useState("black");
   const[showColorPicker,setShowColorPicker] = useState(false);
   const [penSize,setPenSize] = useState(2);
+  const [isEraser,setIsEraser] = useState(false);
+
+  const backgroundColor = '#f5f5f5';
 
 
   const clear = () => {
@@ -46,7 +50,7 @@ export const SignaturePad: React.FC = () => {
           sx={{border: '2px dashed grey',borderRadius: '8px',backgroundColor: '#f5f5f5',
             width: '100%', maxWidth: '520px',height:300,position:"relative"}} >
 
-          <SignatureCanvas ref={sigCanvas} penColor={penColor} minWidth={penSize} maxWidth={penSize}
+          <SignatureCanvas ref={sigCanvas} penColor={isEraser ? backgroundColor : penColor} minWidth={penSize} maxWidth={penSize}
             canvasProps={{style:{width: '100%',height:"100%",}  }} />
 
             <Grid container justifyContent="center" sx={{mt:2,}}>
@@ -70,6 +74,15 @@ export const SignaturePad: React.FC = () => {
           <Button variant="contained" color="primary" onClick={clear}>Clear</Button>
           <Button variant="contained" color="secondary" onClick={save}>Save</Button>
         </Box>
+        <Box sx={{mt:2}}>
+          <Tooltip title="Eraser" arrow>
+            <IconButton onClick={() => setIsEraser(!isEraser)}>
+              <img src={Erase} alt='Eraser' />
+            </IconButton>
+
+          </Tooltip>
+
+        </Box>
       </Box>
     </>
   );
@@ -79,4 +92,6 @@ export const SignaturePad: React.FC = () => {
 
 
 
- 
+
+
+
