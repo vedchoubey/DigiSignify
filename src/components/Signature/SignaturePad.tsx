@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import { Box, Button, Grid, IconButton, Slider, Tooltip, Typography } from '@mui/material';
 import { SketchPicker } from 'react-color';
-import Erase from "../components/images/icons8-eraser-60.png";
+import Erase from "../images/icons8-eraser-60.png";
 
 export const SignaturePad: React.FC = () => {
   const sigCanvas = useRef<SignatureCanvas>(null);
@@ -10,6 +10,8 @@ export const SignaturePad: React.FC = () => {
   const[showColorPicker,setShowColorPicker] = useState(false);
   const [penSize,setPenSize] = useState(2);
   const [isEraser,setIsEraser] = useState(false);
+  const [history,setHistory] = useState<string[]>([]);
+  const [historyIndex,setHistoryIndex] = useState(0);
 
   const backgroundColor = '#f5f5f5';
 
@@ -38,6 +40,40 @@ export const SignaturePad: React.FC = () => {
     }
   }
 
+  const handleEndStroke = () => {
+    if(sigCanvas.current){
+      const dataURL = sigCanvas.current.toDataURL();
+      const newHistory = history.slice(0,historyIndex+1);
+      setHistory([...newHistory,dataURL]);
+      setHistoryIndex(newHistory.length)
+    }
+  }
+
+  const undo = () => {
+    if(historyIndex > 0){
+      setHistoryIndex(historyIndex-1);
+      const img = new Image();
+      img.src = history[historyIndex-1] ;
+      img.onload = () => {
+        sigCanvas.current?.clear();
+        sigCanvas.current?.getCanvas().getContext('2d')?.drawImage(img,0,0)
+        
+      }
+    }
+  }
+
+  const redo = () => {
+    if (historyIndex < history.length - 1) {
+      setHistoryIndex(historyIndex + 1);
+      const img = new Image();
+      img.src = history[historyIndex + 1];
+      img.onload = () => {
+        sigCanvas.current?.clear();
+        sigCanvas.current?.getCanvas().getContext("2d")?.drawImage(img, 0, 0);
+      };
+    }
+  };
+
   return (
     <>
       <Box
@@ -50,8 +86,8 @@ export const SignaturePad: React.FC = () => {
           sx={{border: '2px dashed grey',borderRadius: '8px',backgroundColor: '#f5f5f5',
             width: '100%', maxWidth: '520px',height:300,position:"relative"}} >
 
-          <SignatureCanvas ref={sigCanvas} penColor={isEraser ? backgroundColor : penColor} minWidth={penSize} maxWidth={penSize}
-            canvasProps={{style:{width: '100%',height:"100%",}  }} />
+          <SignatureCanvas ref={sigCanvas} penColor={isEraser ? backgroundColor : penColor} minWidth={penSize} 
+            maxWidth={penSize} canvasProps={{style:{width: '100%',height:"100%",} }}  onEnd={handleEndStroke} />
 
             <Grid container justifyContent="center" sx={{mt:2,}}>
 
@@ -68,11 +104,14 @@ export const SignaturePad: React.FC = () => {
         <Box sx={{ mt:6,width: "80%", maxWidth: 300}}>
           <Typography gutterBottom >Pen Size</Typography>
           <Slider value={penSize} onChange={handlePenSizeChange} aria-labelledby="pen-size-slider"
-            valueLabelDisplay="auto" step={1} min={1}  max={10}/></Box>
+            valueLabelDisplay="auto" step={1} min={1}  max={10} />
+        </Box>
 
         <Box sx={{ display: 'flex', gap: 2, mt: 2 }}> 
           <Button variant="contained" color="primary" onClick={clear}>Clear</Button>
           <Button variant="contained" color="secondary" onClick={save}>Save</Button>
+          <Button variant="contained" onClick={undo}  disabled={historyIndex === 0}>Undo</Button>
+          <Button variant="contained" onClick={redo}  disabled={historyIndex === history.length - 1}>Redo</Button>
         </Box>
         <Box sx={{mt:2}}>
           <Tooltip title="Eraser" arrow>
