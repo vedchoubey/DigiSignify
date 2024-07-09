@@ -6,8 +6,10 @@ import Erase from "./images/icons8-eraser-60.png";
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import CreateIcon from '@mui/icons-material/Create';
+import { useTheme } from '@mui/material/styles';
 
-export const SignaturePad: React.FC = () => {
+export const Draw: React.FC = () => {
+  const theme = useTheme()
   const sigCanvas = useRef<SignatureCanvas>(null);
   const [penColor,setPenColor] = useState("black");
   const[showColorPicker,setShowColorPicker] = useState(false);
@@ -95,7 +97,7 @@ export const SignaturePad: React.FC = () => {
     <>
       <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', 
            height: '100vh', gap: 2, padding: 2 }}>
-      <Typography variant="h4" gutterBottom>Digital Signature</Typography>
+      <Typography variant="h4" gutterBottom sx={{color:theme.palette.primary.main,mt:5}}>Draw your Signature</Typography>
 
       <Box sx={{ border: '2px dashed grey', borderRadius: '8px', backgroundColor: backgroundColor, width: '100%',
               maxWidth: '600px', height: '40%', position: "relative" }}>

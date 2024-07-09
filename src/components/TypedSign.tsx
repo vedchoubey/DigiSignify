@@ -36,7 +36,7 @@ const handwritingFonts = [
 
 const colors = ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FFA500', '#800080'];
 
-export const TypedSign: React.FC = () => {
+export const Type: React.FC = () => {
   const [text, setText] = useState<string>('');
   const [showHandwriting, setShowHandwriting] = useState<boolean>(false);
   const [selectedFont, setSelectedFont] = useState<string>('');

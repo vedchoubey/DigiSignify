@@ -1,16 +1,25 @@
 import React from 'react';
-import { SignaturePad } from './components/SignaturePad';
-import { TypedSign } from './components/TypedSign';
+import { Draw } from './components/SignaturePad';
+import { Type } from './components/TypedSign';
 import { Header } from './components/Header';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { Landing } from './Pages/LandingPage';
 
 export const App: React.FC = () => {
+  const location = useLocation();
+
+  const shouldDisplayHeader = () => {
+    return location.pathname !== "/login" ;
+  };
   return (
     <>
+     {shouldDisplayHeader() && <Header />}
       <Routes>
-        <Route path='/signature' element={<SignaturePad/>}/>
-        <Route path='/header' element={<Header/>}/>
-        <Route path='/typedsign' element={<TypedSign/>} />
+
+        <Route path='/draw' element={<Draw/>}/>
+        <Route path='/type' element={<Type/>} />
+        <Route path='/' element={<Landing/>} />
+
       </Routes>
     </>
 
