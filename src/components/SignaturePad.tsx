@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 import { Box, Button, IconButton, Slider, Tooltip, Typography } from '@mui/material';
 import { SketchPicker } from 'react-color';
-import Erase from "./images/icons8-eraser-60.png";
+import Erase from "../images/icons8-eraser-60.png";
 import UndoIcon from '@mui/icons-material/Undo';
 import RedoIcon from '@mui/icons-material/Redo';
 import CreateIcon from '@mui/icons-material/Create';

@@ -36,7 +36,10 @@ export const Header = () => {
                 </Box>
 
                 <Link to={"/login"}><Button sx={{borderRadius:5,border:1,px:2,color:theme.palette.secondary.main, 
-                  textTransform:"none",ml:"auto",}}>Login</Button> </Link>
+                  textTransform:"none",ml:"auto",mr:2}}>Login</Button> </Link>
+
+                <Link to={"/signup"}><Button sx={{borderRadius:5,border:1,px:1,color:theme.palette.secondary.main, 
+                  textTransform:"none",ml:"auto",}}>Signup</Button> </Link>
        </Toolbar>
 
     </AppBar>

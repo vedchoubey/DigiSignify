@@ -1,8 +1,8 @@
 import React from "react";
 import { useTheme } from "@mui/material/styles";
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import draw from "../../images/drawicon.svg";
-import type from "../../images/type-icon-.svg";
+import draw from "../../images/signature-icon-10.jpg";
+import type from "../../images/OIP.jpg";
 import { Link } from "react-router-dom";
 
 
@@ -11,7 +11,7 @@ export const Landing : React.FC = () => {
     
     return(
     <>
-    <Typography sx={{fontSize:{xs:20,md:40},textAlign:"center",mt:8,color:theme.palette.primary.main}}>
+    <Typography sx={{fontSize:{xs:20,md:40},textAlign:"center",mt:10,color:theme.palette.primary.main}}>
        Way To Create Your Electronic Signature</Typography>
      <Box sx={{display:"flex",flexDirection:{xs:"column",md:"row"},justifyContent:"center",alignItems:"center"
      ,mt:5,gap:3,px:{xs:5,md:0},textAlign:{xs:"center",md:"left"},}}>
@@ -19,7 +19,7 @@ export const Landing : React.FC = () => {
           <Link to={"/draw"} style={{ textDecoration: 'none' }} >
           <Card sx={{}} >
             <CardContent sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-              <img src={draw} alt="" style={{height:"100px",width:"200px",marginTop:"50px"}}/>
+              <img src={draw} alt="" style={{height:"100px",width:"100px",marginTop:"50px",fill:"#1B3A57" }}/>
               <Typography sx={{fontSize:25,color:theme.palette.primary.main,mt:4,mb:6}}>Draw Signature</Typography>
             </CardContent>
           </Card>
@@ -33,7 +33,7 @@ export const Landing : React.FC = () => {
             <Link to={"/type"} style={{ textDecoration: 'none' }} >
           <Card >
             <CardContent sx={{display:"flex",justifyContent:"center",alignItems:"center",flexDirection:"column"}}>
-              <img src={type} alt="" style={{height:"100px",width:"200px",marginTop:"50px"}}/>
+              <img src={type} alt="" style={{height:"100px",width:"100px",marginTop:"50px"}}/>
               <Typography sx={{fontSize:25,color:theme.palette.primary.main,mt:4,mb:6}}>Type Signature</Typography>
             </CardContent>
           </Card>
