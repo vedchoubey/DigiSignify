@@ -11,7 +11,7 @@ export const Landing : React.FC = () => {
     
     return(
     <>
-    <Typography sx={{fontSize:{xs:20,md:40},textAlign:"center",mt:10,color:theme.palette.primary.main}}>
+    <Typography sx={{fontSize:{xs:30,md:40},textAlign:"center",mt:10,color:theme.palette.primary.main}}>
        Way To Create Your Electronic Signature</Typography>
      <Box sx={{display:"flex",flexDirection:{xs:"column",md:"row"},justifyContent:"center",alignItems:"center"
      ,mt:5,gap:3,px:{xs:5,md:0},textAlign:{xs:"center",md:"left"},}}>

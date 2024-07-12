@@ -26,16 +26,16 @@ export const Signup = () => {
   return (
     <>
     <Box sx={{bgcolor:theme.palette.primary.main,height:"100vh",display:"flex",
-          alignItems:"center",flexDirection:"column"}}>
+          alignItems:"center",flexDirection:"column",justifyContent:"center",p:2}}>
         <Typography sx={{fontSize:40,fontFamily:"roboto",letterSpacing:1,color:"secondary.main"}}>
           DigiSignify</Typography>
     
-    <Card sx={{mt:1,borderRadius:3,width:500}} >
+    <Card sx={{mt:{xs:4,md:1},borderRadius:3,width:{xs:"100%",md:500}}} >
        <CardContent>
           <Typography sx={{fontSize: 30,color:"primary.main",textAlign: "center",}} > Signup</Typography>
 
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",mx:8,justifyContent:"center",mt:2}}>
+          <Box sx={{display:"flex",flexDirection:"column",alignItems:"center",mx:{xs:2,md:8},justifyContent:"center",mt:2}}>
             
             <TextField fullWidth placeholder='Your Name'
               InputProps={{ sx: {borderRadius: 50,}  }}
@@ -78,7 +78,7 @@ export const Signup = () => {
               </Box>
             </form>
 
-            <Button variant="outlined" sx={{ borderRadius: 50, mx:8,py:2,backgroundColor: theme.palette.primary.main,
+            <Button variant="outlined" sx={{ borderRadius: 50, mx:{xs:2,md:8},py:2,backgroundColor: theme.palette.primary.main,
              "&:hover": {backgroundColor: theme.palette.primary.main,},my:2,width: '-webkit-fill-available' }} >
             <img src={GoogleIcon} alt="Google Icon" style={{ width: 15, height: 15, marginRight: 8 }} />
             <Typography sx={{ fontSize: 13,color:"secondary.main",

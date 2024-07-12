@@ -4,9 +4,9 @@ import { Type } from './components/TypedSign';
 import { Header } from './components/Header';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { Landing } from './Pages/LandingPage';
-import { CardCarousel } from './components/CardCarousel';
 import { Login } from './Pages/Login';
 import { Signup } from './Pages/Signup';
+
 
 export const App: React.FC = () => {
   const location = useLocation();
@@ -22,11 +22,9 @@ export const App: React.FC = () => {
         <Route path='/draw' element={<Draw/>}/>
         <Route path='/type' element={<Type/>} />
         <Route path='/' element={<Landing/>} />
-        <Route path='/carousel' element={<CardCarousel/>} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-
-
+        
       </Routes>
     </>
 

@@ -1,8 +1,9 @@
 import React from 'react';
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Toolbar, Typography, useMediaQuery } from '@mui/material';
 import {useTheme} from "@mui/material/styles";
 import { Link } from 'react-router-dom';
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { DrawerCompo } from './DrawerCompo';
 
 const menuItems = [
     {label:"API" , to:"/api"},
@@ -15,12 +16,16 @@ const menuItems = [
 export const Header = () => {
 
  const theme = useTheme();
+ const isMatch = useMediaQuery(theme.breakpoints.down("md"))
   return (
     <>
     <AppBar sx={{backgroundColor:theme.palette.primary.main,boxShadow:"none"}}>
       <Toolbar>
         <Link to={"/"}><Button sx={{color:theme.palette.secondary.main , textTransform:"none",}}>
           <Typography sx={{fontSize:30,fontFamily:"roboto",letterSpacing:1}}>DigiSignify</Typography></Button></Link>
+
+          {isMatch ? (<> <DrawerCompo /> </> ) : 
+          <>
 
             <Box sx={{ml:"auto",display:"flex",gap:3,mr:3}}>
               {menuItems.map( (item,index) => (
@@ -40,6 +45,7 @@ export const Header = () => {
 
                 <Link to={"/signup"}><Button sx={{borderRadius:5,border:1,px:1,color:theme.palette.secondary.main, 
                   textTransform:"none",ml:"auto",}}>Signup</Button> </Link>
+                  </> }
        </Toolbar>
 
     </AppBar>
